@@ -71,6 +71,13 @@ recidive hits:
 * `MAX_LINES` controls how many recent entries per IP are shown (default is 5).
 
 
+## Compatibility
+
+Tested on:
+
+* Ubuntu 24.04.3 LTS + Fail2Ban 1.0.2
+
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
