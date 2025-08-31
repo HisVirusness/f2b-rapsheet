@@ -46,7 +46,8 @@ done
 
 # auto-discover jails
 if $AUTO_JAILS; then
-  JAILS="$(sudo fail2ban-client status --list 2>/dev/null | tr -s ' ' '\n' | sed '/^$/d')"
+  auto="$(sudo fail2ban-client status --list 2>/dev/null | tr -s ' ' '\n' | sed '/^$/d')"
+  [[ -n "$auto" ]] && JAILS="$auto"
 fi
 
 [[ -n "${ACCESS_LOG:-}" ]] || die "ACCESS_LOG not set (config or default)"
@@ -81,7 +82,9 @@ if [[ -n "$TARGET_IP" ]]; then
 fi
 
 ip_in_jail(){ sudo fail2ban-client status "$2" 2>/dev/null | grep -qw -- "$1"; }
-ip_has_web_hits(){ grep -qE "^$1[[:space:]]" "$ACCESS_LOG"; }
+ip_has_web_hits(){
+  awk -v ip="$1" '$1==ip { found=1; exit } END{ exit !found }' "$ACCESS_LOG"
+}
 
 print_hits() {
   local ip="$1"
