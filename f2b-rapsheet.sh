@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+: "${CONF:=$HOME/.f2b-rapsheet.conf}"
 
 # ---------------- defaults (overridden by config) ----------------
 JAILS="apache-badbots recidive" # include custom jails, if any
