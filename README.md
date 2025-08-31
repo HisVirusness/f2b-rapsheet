@@ -25,7 +25,6 @@ ACCESS_LOG="/var/log/apache2/access.log" # adjust as needed, e.g. /var/log/nginx
 IP_REGEX='^([0-9]{1,3}[.]){3}[0-9]{1,3}$|^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]+$'  # IPv4/IPv6
 ```
 
----
 
 ## Usage
 
@@ -42,6 +41,7 @@ IP_REGEX='^([0-9]{1,3}[.]){3}[0-9]{1,3}$|^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]+$'  # IPv
 # Override jail list ad hoc
 ./f2b-rapsheet.sh -j "apache-badbots recidive"
 ```
+
 
 ## Example Output
 
@@ -60,6 +60,7 @@ recidive hits:
       (no web hits; likely SSH-only offender)
 ```
 
+
 ## Notes / Troubleshooting
 
 * **No web hits for `recidive`** is normal if the offender only tripped SSH.
@@ -68,3 +69,8 @@ recidive hits:
   - Your log format is the standard/combined style with user agents.
   - The jails in `JAILS` actually exist (`fail2ban-client status --list`).
 * `MAX_LINES` controls how many recent entries per IP are shown (default is 5).
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
